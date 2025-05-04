@@ -2,8 +2,8 @@ package pets.model;
 
 public class RabbitModel extends Pet {
 
-	public RabbitModel(String name, String species, int age) {
-		super(name, "Rabbit", age);
+	public RabbitModel(int id, String name, String species, int age) {
+		super(id, name, species, age);
 	}
 
 }

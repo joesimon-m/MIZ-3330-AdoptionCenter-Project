@@ -1,6 +1,7 @@
 package pets.model;
 
 public abstract class Pet implements Comparable<Pet> {
+	private int id;
 	private String name;
 	private int age;
 	private String species;
@@ -12,13 +13,30 @@ public abstract class Pet implements Comparable<Pet> {
 	 * @param species	String species for this pet
 	 * @param age		int age of this pet
 	 */
-	public Pet(String name, String species, int age) {
+	public Pet(int id, String name, String species, int age) {
+		this.id = id;
 		this.name = name;
 		this.species = species;
 		this.age = age;
 		adopted = false;
 	}
 
+	/** Returns the id of this pet
+	 * 
+	 * @return			int id of this pet
+	 */
+	public int getId() {
+		return id;
+	}
+	
+	/** Sets the id of this pet
+	 * 
+	 * @param name		int id to be set to this pet's id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	/** Returns the name of this pet
 	 * 
 	 * @return			String name of this pet
@@ -102,7 +120,7 @@ public abstract class Pet implements Comparable<Pet> {
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Pet) {
-			return (this.name.equals(((Pet)obj).name)) && (this.species.equals(((Pet)obj).species)) && (this.age == ((Pet)obj).age) && (this.adopted == ((Pet)obj).adopted);
+			return (this.id == ((Pet)obj).getId()) && (this.name.equals(((Pet)obj).name)) && (this.species.equals(((Pet)obj).species)) && (this.age == ((Pet)obj).age) && (this.adopted == ((Pet)obj).adopted);
 		} else {
 			return false;
 		}
@@ -114,6 +132,6 @@ public abstract class Pet implements Comparable<Pet> {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s has the following qualities:\n\tAge: %d\n\tSpecies: %s\n\tAdopted: %s", name, age, species, adopted);
+		return String.format("%s has the following qualities:\n\tID: %d\n\tAge: %d\n\tSpecies: %s\n\tAdopted: %s", name, id, age, species, adopted);
 	}
 }
