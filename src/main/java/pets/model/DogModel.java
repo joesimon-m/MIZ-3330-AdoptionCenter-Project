@@ -6,4 +6,9 @@ public class DogModel extends Pet {
 		super(id, name, species, age);
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Dog: %s"
+				+ "n", super.toString());
+	}
 }

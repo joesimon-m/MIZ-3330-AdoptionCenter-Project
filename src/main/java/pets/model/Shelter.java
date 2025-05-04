@@ -10,8 +10,16 @@ public class Shelter <T extends Pet>{
 		this.pets = new HashSet<>();
 	}
 	
+	public Shelter(Set<T> pets) {
+		this.pets = new HashSet<>(pets);
+	}
+	
 	public boolean add(T pet) {
 		return pets.add(pet);
+	}
+	
+	public void addSetOfPets(Set<T> pets) {
+		this.pets.addAll(pets);
 	}
 	
 	public boolean remove(T pet) {

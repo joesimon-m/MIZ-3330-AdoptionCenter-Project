@@ -13,7 +13,7 @@ import java.util.Set;
 
 import com.google.gson.Gson;
 
-public class JsonImport {
+public class JsonImportAndExport {
 	private static final Gson gson = new Gson();
 	private static final String EXOTIC_ANIMALS_PATH = "/PetAdoptionCenter/src/main/resources/exotic_animals.json";
 	private static final String PETS_PATH = "/PetAdoptionCenter/src/main/resources/pets.json";

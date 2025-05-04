@@ -9,9 +9,10 @@ public class ExoticAnimal {
 	private int age;
 	private boolean adopted;
 	
-	public ExoticAnimal(int id, String name, String species, int age, boolean adopted) {
+	public ExoticAnimal(int id, String name, String category, String species, int age, boolean adopted) {
 		this.id = id;
 		this.name = name;
+		this.category = category;
 		this.species = species;
 		this.age = age;
 		this.adopted = adopted;
@@ -65,4 +66,8 @@ public class ExoticAnimal {
 		this.category = category;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("%s has the following qualities:\n\tID: %d\n\tAge: %d\n\tCategory: %s\n\tSpecies: %s\n\tAdopted: %s", name, id, age, category, species, adopted);
+	}
 }
