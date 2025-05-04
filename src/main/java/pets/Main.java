@@ -1,10 +1,12 @@
 package pets;
 
+import pets.controller.PetController;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		PetController pc = new PetController();
+		// pc.start();
 	}
 
 }
