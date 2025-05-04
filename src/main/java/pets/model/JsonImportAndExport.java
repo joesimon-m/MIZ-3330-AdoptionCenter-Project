@@ -3,13 +3,11 @@ package pets.model;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -25,10 +23,10 @@ public class JsonImportAndExport {
 	private static final Gson gson = new Gson();
 
 	
-	/**
+	/** Goes through each animal in the exotic_animals.json file, stores them in a set, then returns that set to the user
 	 * 
-	 * @return
-	 * @throws IOException
+	 * @return				Set of Pets representing each exotic Animal
+	 * @throws IOException	IOException if an error occurs within the reading process
 	 */
 	public static Set<Pet> loadExoticAnimals() throws IOException {
 		InputStream input = JsonImportAndExport.class.getResourceAsStream("/exotic_animals.json");
@@ -48,21 +46,21 @@ public class JsonImportAndExport {
 		} 
 	}
 	
-	/**
+	/** Goes through each pet within the pets.json file and returns the total set of pets to the user
 	 * 
-	 * @param filePath
-	 * @return
-	 * @throws IOException
+	 * @return				Set of Pets containing each pet
+	 * @throws IOException	IOException in the case where an error occurs within the reading process
 	 */
 	public static Set<Pet> loadPets() throws IOException {
 	    Set<Pet> petSet = new HashSet<>();
 
 	    try (BufferedReader reader = new BufferedReader(new InputStreamReader(
 	            Objects.requireNonNull(JsonImportAndExport.class.getResourceAsStream("/pets.json"))))) {
-	        JsonElement jsonElement = JsonParser.parseReader(reader);
-	        JsonArray jsonArray = jsonElement.getAsJsonArray();
+	        JsonElement ele = JsonParser.parseReader(reader);
+	        JsonArray arr = ele.getAsJsonArray();
 
-	        for (JsonElement element : jsonArray) {
+	        // Go through each element within the json file to find all the characteristics of each pet, then call each pet's respective class
+	        for (JsonElement element : arr) {
 	            JsonObject obj = element.getAsJsonObject();
 	            String type = obj.get("type").getAsString();
 
@@ -73,6 +71,7 @@ public class JsonImportAndExport {
 	            int age = obj.get("age").getAsInt();
 	            boolean adopted = obj.get("adopted").getAsBoolean();
 
+	            // goes through each type of category inside the pets.json file and calls the associated Pet Model to be assigned to this pet variable
 	            switch (type.toLowerCase()) {
 	                case "dog":
 	                    pet = new DogModel(id, name, species, age);
@@ -100,11 +99,10 @@ public class JsonImportAndExport {
 	    return petSet;
 	}
 	
-	/**
+	/** Saves a json file located in src/main/resources containing the new set of pets
 	 * 
-	 * @param pets
-	 * @param filePath
-	 * @throws IOException
+	 * @param pets			Set of pets to be saved
+	 * @throws IOException	IOException in the case that something goes wrong when trying to write the pets to the json file
 	 */
 	public static String savePets(Set<Pet> pets) throws IOException {
 		SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd_HHmmss");
