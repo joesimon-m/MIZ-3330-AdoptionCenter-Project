@@ -5,7 +5,10 @@ public class ExoticAnimalAdapter extends Pet{
 	private ExoticAnimal exoticAnimal;
 	
 	public ExoticAnimalAdapter(ExoticAnimal exoticAnimal) {
-		super(exoticAnimal.getId(), exoticAnimal.getName(), exoticAnimal.getSpecies(), exoticAnimal.getAge());
+		super(Integer.parseInt(exoticAnimal.getId().substring(exoticAnimal.getId().length() - 3)), 
+				exoticAnimal.getName(), 
+				exoticAnimal.getSpecies(), 
+				exoticAnimal.getAge());
 		this.exoticAnimal = exoticAnimal;
 		setAdopted(exoticAnimal.isAdopted());
 	}
@@ -28,7 +31,4 @@ public class ExoticAnimalAdapter extends Pet{
 	public boolean isAdopted() {
 		return super.isAdopted();
 	}
-	
-	
-
 }

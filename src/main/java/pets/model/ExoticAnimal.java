@@ -2,52 +2,53 @@ package pets.model;
 
 public class ExoticAnimal {
 
-	private int id;
-	private String name;
-	private String species;
+	private String uniqueId;
+	private String animalName;
+	private String subSpecies;
 	private String category;
-	private int age;
+	private int yearsold;
 	private boolean adopted;
+
 	
-	public ExoticAnimal(int id, String name, String category, String species, int age, boolean adopted) {
-		this.id = id;
-		this.name = name;
+	public ExoticAnimal(String id, String name, String species, String category, int age) {
+		this.uniqueId = id;
+		this.animalName = name;
 		this.category = category;
-		this.species = species;
-		this.age = age;
-		this.adopted = adopted;
+		this.subSpecies = species;
+		this.yearsold = age;
+		adopted = false;
 	}
 
-	public int getId() {
-		return id;
+	public String getId() {
+		return uniqueId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(String id) {
+		this.uniqueId = id;
 	}
 
 	public String getName() {
-		return name;
+		return animalName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.animalName = name;
 	}
 
 	public String getSpecies() {
-		return species;
+		return subSpecies;
 	}
 
 	public void setSpecies(String species) {
-		this.species = species;
+		this.subSpecies = species;
 	}
 
 	public int getAge() {
-		return age;
+		return yearsold;
 	}
 
 	public void setAge(int age) {
-		this.age = age;
+		this.yearsold = age;
 	}
 
 	public boolean isAdopted() {
@@ -68,6 +69,6 @@ public class ExoticAnimal {
 
 	@Override
 	public String toString() {
-		return String.format("%s has the following qualities:\n\tID: %d\n\tAge: %d\n\tCategory: %s\n\tSpecies: %s\n\tAdopted: %s", name, id, age, category, species, adopted);
+		return String.format("%s has the following qualities:\n\tID: %s\n\tAge: %d\n\tCategory: %s\n\tSpecies: %s\n\tAdopted: %s", animalName, uniqueId, yearsold, category, subSpecies, adopted);
 	}
 }
