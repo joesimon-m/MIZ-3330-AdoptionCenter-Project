@@ -84,7 +84,7 @@ public abstract class Pet implements Comparable<Pet> {
 		this.adopted = adopted;
 	}
 	
-	/** Compares the names of the given pet class with this pet class
+	/** Compares the names of the given pet class with this pet class (defaults to name)
 	 * 
 	 * @param o		Pet object to be compared with this object
 	 * @return		negative integer, zero, or a positive integer depending on if this pet's name is less than, equal, or greater than the other pet's name
