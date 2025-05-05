@@ -1,14 +1,21 @@
 package pets;
 
 import pets.controller.PetController;
-//import pets.model.JsonImportAndExport;
-import pets.model.Pet;
-//import pets.model.Shelter;
+import pets.view.PetInputView;
 
 public class Main {
 
-	public static void main(String[] args) {
-		PetController pc = new PetController();
-		// pc.start();
-	}
+    public static void main(String[] args) {
+        
+        PetInputView petInputView = new PetInputView(null); 
+        
+     
+        PetController petController = new PetController(petInputView);
+        
+        
+        petInputView.setController(petController);
+        
+        
+        petController.start();
+    }
 }
