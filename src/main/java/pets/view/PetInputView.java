@@ -7,23 +7,40 @@ import pets.controller.PetController;
 import java.util.ArrayList;
 import java.util.Set;
 
+/**
+ * Represents a GUI for the  pet shelter. 
+ * It provides functionality to add, adopt,
+ * remove, and view pets using a table and various input dialogs.
+ */
 public class PetInputView extends JFrame {
     private PetController controller;
-
-    public void setController(PetController controller) {
-        this.controller = controller;
-    }
-
     private JTable petTable;
     private JButton addButton, adoptButton, removeButton, viewButton, saveButton;
     private JComboBox<String> sortComboBox;
     private PetTableModel petTableModel;
 
+    /**
+     * Sets the controller associated with this view.
+     *
+     * @param controller to associate with this view
+     */
+    public void setController(PetController controller) {
+        this.controller = controller;
+    }
+
+    /**
+     * Constructs a new {@code PetInputView} with the given controller.
+     *
+     * @param controller the controller to be linked to the view
+     */
     public PetInputView(PetController controller) {
         this.controller = controller;
         initialize();
     }
 
+    /**
+     * Initializes the GUI components of the view, including the table and buttons.
+     */
     private void initialize() {
         setTitle("Pet Shelter Management");
         setSize(500, 400);
@@ -64,18 +81,38 @@ public class PetInputView extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Updates the pet table in the GUI to reflect the current list of pets.
+     *
+     * @param set a set of pets to display in the table
+     */
     public void updatePetTable(Set<Pet> set) {
         petTableModel.setPets(set);
     }
 
+    /**
+     * Returns the index of the selected row in the pet table.
+     *
+     * @return the selected row index, or -1 if no row is selected
+     */
     public int getPetTableModel() {
         return petTable.getSelectedRow();
     }
 
+    /**
+     * Returns the frame itself.
+     *
+     * @return the current JFrame
+     */
     public JFrame getFrame() {
         return this;
     }
 
+    /**
+     * Displays a dialog to input a new pet's information and creates a {@code Pet} object.
+     *
+     * @return a new Pet instance, or null if the dialog was canceled
+     */
     public Pet showAddPetDialog() {
         JTextField nameField = new JTextField(10);
         JTextField speciesField = new JTextField(10);
@@ -113,6 +150,11 @@ public class PetInputView extends JFrame {
         return null;
     }
 
+    /**
+     * Displays a dialog showing details of the selected pet.
+     *
+     * @param pet the Pet object whose details are to be shown
+     */
     public void showPetDetailsDialog(Pet pet) {
         if (pet != null) {
             JTextArea detailsArea = new JTextArea(pet.toString());
