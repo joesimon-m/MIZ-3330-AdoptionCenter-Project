@@ -20,6 +20,10 @@ public class PetController {
     private void loadPetsFromFile() {
         try {
             Set<Pet> loadedPets = JsonImportAndExport.loadPets();
+            Set<Pet> exoticPets = JsonImportAndExport.loadExoticAnimals();
+
+            loadedPets.addAll(exoticPets);
+
             for (Pet pet : loadedPets) {
                 shelter.add(pet);
                 if (pet.getId() >= petIdCounter) {
