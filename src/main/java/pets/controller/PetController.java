@@ -6,17 +6,31 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.Set;
 
+/**
+ * The  class acts as the main controller for the pet shelter application.
+ * It handles user interactions, manages the shelter data, and updates the view.
+ */
 public class PetController {
     private Shelter<Pet> shelter;
     private PetInputView view;
     private int petIdCounter = 1;
 
+    /**
+     * Constructs a new  PetController with the specified view.
+     * Initializes the shelter and loads pets from files.
+     *
+     * @param view the PetInputView used for user interaction
+     */
     public PetController(PetInputView view) {
         this.shelter = new Shelter<>();
         this.view = view;
         loadPetsFromFile();
     }
 
+    /**
+     * Loads pets including exotic animals from JSON files and adds them to the shelter.
+     * Updates the view with the loaded data.
+     */
     private void loadPetsFromFile() {
         try {
             Set<Pet> loadedPets = JsonImportAndExport.loadPets();
@@ -36,9 +50,16 @@ public class PetController {
         }
     }
 
+    /**
+     * Starts the application logic. 
+     */
     public void start() {
     }
 
+    /**
+     * Prompts the user to add a new pet via the view. If a pet is added,
+     * it is assigned a unique ID and added to the shelter and view.
+     */
     public void addNewPet() {
         Pet newPet = view.showAddPetDialog();
         if (newPet != null) {
@@ -48,6 +69,10 @@ public class PetController {
         }
     }
 
+    /**
+     * Displays details of the selected pet from the pet table.
+     * Shows an error message if no pet is selected.
+     */
     public void viewPetDetails() {
         int selectedRow = view.getPetTableModel();
         if (selectedRow >= 0) {
@@ -60,6 +85,10 @@ public class PetController {
         }
     }
 
+    /**
+     * Marks the selected pet as adopted if it is not already adopted.
+     * Updates the view.
+     */
     public void adoptPet() {
         int selectedRow = view.getPetTableModel();
         if (selectedRow >= 0) {
@@ -76,6 +105,10 @@ public class PetController {
         }
     }
 
+    /**
+     * Removes the selected pet from the shelter and updates the view.
+     * Shows an error if no pet is selected.
+     */
     public void removePet() {
         int selectedRow = view.getPetTableModel();
         if (selectedRow >= 0) {
@@ -90,6 +123,10 @@ public class PetController {
         }
     }
 
+    /**
+     * Saves all current pets in the shelter to a JSON file and displays the file path.
+     * Displays an error message if the save operation fails.
+     */
     public void savePets() {
         try {
             String saveFilePath = JsonImportAndExport.savePets(shelter.getAllPets());
